@@ -1,0 +1,2 @@
+# AutoTrading
+Algorithmic trading solution
