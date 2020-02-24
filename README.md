@@ -1,3 +1,4 @@
+# Algorithmic trading solution
 Includes:
  - Provider of historical data (implemented for the ["Finam" broker](https://www.finam.ru/profile/moex-akcii/gazprom/export/))
  - Sandbox for algorithmic trading Strategies (TODO)
