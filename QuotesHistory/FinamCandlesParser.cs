@@ -54,16 +54,8 @@ namespace AutoTrading.QuotesHistory
             {
                 throw new VolumeParseException(volumeString);
             }
-            
-            return new Candle
-            {
-                OpenValue = openValue,
-                HighValue = highValue,
-                LowValue = lowValue,
-                CloseValue = closeValue,
-                Volume = volume,
-                CloseDateTime = dateTime,
-            };
+
+            return new Candle(openValue, closeValue, lowValue, highValue, volume, dateTime);
         }
     }
 }

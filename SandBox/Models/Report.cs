@@ -16,7 +16,7 @@ namespace AutoTrading.SandBox.Models
         public IReadOnlyCollection<Lot> ProfitableLots => Lots.Where(x => x.Profit.HasValue && x.Profit > 0).ToList();
         public IReadOnlyCollection<Lot> UnprofitableLots => Lots.Where(x => x.Profit.HasValue && x.Profit <= 0).ToList();
         public decimal ProfitableLotsSum => ProfitableLots.Sum(x => x.Profit.Value);
-        public decimal UnprofitableLotsSum => ProfitableLots.Sum(x => x.Profit.Value);
+        public decimal UnprofitableLotsSum => UnprofitableLots.Sum(x => x.Profit.Value);
         
         public override string ToString()
         {

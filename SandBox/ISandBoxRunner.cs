@@ -5,8 +5,8 @@ using AutoTrading.Strategy;
 
 namespace AutoTrading.SandBox
 {
-    public interface ISandBox
+    public interface ISandBoxRunner
     {
-        Report TestStrategy(IEnumerable<Candle> historyCandles, IStrategy strategy, IEnumerable<Tick> ticks);
+        Report RunStrategy(IEnumerable<Candle> historyCandles, IStrategy strategy, IEnumerable<Tick> ticks);
     }
 }

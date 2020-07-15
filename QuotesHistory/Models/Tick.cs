@@ -4,8 +4,15 @@ namespace AutoTrading.QuotesHistory.Models
 {
     public class Tick
     {
-        public DateTime DateTime { get; set; }
-        public decimal Value { get; set; }
-        public int Volume { get; set; }
+        public Tick(decimal value, int volume, DateTime dateTime)
+        {
+            DateTime = dateTime;
+            Value = value;
+            Volume = volume;
+        }
+
+        public DateTime DateTime { get; }
+        public decimal Value { get; }
+        public int Volume { get; }
     }
 }

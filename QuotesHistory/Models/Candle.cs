@@ -4,11 +4,21 @@ namespace AutoTrading.QuotesHistory.Models
 {
     public class Candle
     {
-        public DateTime CloseDateTime { get; set; }
-        public decimal OpenValue { get; set; }
-        public decimal CloseValue { get; set; }
-        public decimal LowValue { get; set; }
-        public decimal HighValue { get; set; }
-        public int Volume { get; set; }
+        public Candle(decimal openValue, decimal closeValue, decimal lowValue, decimal highValue, int volume, DateTime closeDateTime)
+        {
+            OpenValue = openValue;
+            CloseValue = closeValue;
+            LowValue = lowValue;
+            HighValue = highValue;
+            Volume = volume;
+            CloseDateTime = closeDateTime;
+        }
+
+        public DateTime CloseDateTime { get; }
+        public decimal OpenValue { get; }
+        public decimal CloseValue { get; }
+        public decimal LowValue { get; }
+        public decimal HighValue { get; }
+        public int Volume { get; }
     }
 }

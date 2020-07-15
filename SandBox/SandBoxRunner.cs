@@ -5,9 +5,9 @@ using AutoTrading.Strategy;
 
 namespace AutoTrading.SandBox
 {
-    public class SandBox : ISandBox
+    public class SandBoxRunner : ISandBoxRunner
     {
-        public Report TestStrategy(IEnumerable<Candle> historyCandles, IStrategy strategy, IEnumerable<Tick> ticks)
+        public Report RunStrategy(IEnumerable<Candle> historyCandles, IStrategy strategy, IEnumerable<Tick> ticks)
         {
             strategy.LoadHistory(historyCandles);
             

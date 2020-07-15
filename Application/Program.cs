@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoTrading.QuotesHistory;
 using AutoTrading.QuotesHistory.Models;
+using AutoTrading.SandBox;
+using AutoTrading.Strategy.Strategies;
 
 namespace AutoTrading.Application
 {
-    class Program
+    internal static class Program
     {
         static async Task Main(string[] args)
         {
@@ -30,7 +34,11 @@ namespace AutoTrading.Application
                 new DateTime(2020, 2, 21, 0, 0, 0),
                 CancellationToken.None);
 
-            var sandBox = new SandBox.SandBox();
+            var sandBoxRunner = new SandBoxRunner();
+            var report = sandBoxRunner.RunStrategy(
+                new List<Candle>(),
+                new RandomStrategy(),
+                candlesHistory.Candles.Select(x => new Tick(value: x.CloseValue, x.Volume, x.CloseDateTime)));
         }
     }
 }

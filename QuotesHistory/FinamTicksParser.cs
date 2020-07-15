@@ -40,13 +40,8 @@ namespace AutoTrading.QuotesHistory
             {
                 throw new VolumeParseException(volumeString);
             }
-            
-            return new Tick
-            {
-                Value = value,
-                Volume = volume,
-                DateTime = dateTime,
-            };
+
+            return new Tick(value, volume, dateTime);
         }
     }
 }

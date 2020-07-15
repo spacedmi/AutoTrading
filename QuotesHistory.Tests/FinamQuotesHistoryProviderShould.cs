@@ -35,7 +35,7 @@ namespace AutoTrading.QuotesHistory.Tests
             var dateFrom = new DateTime(2020, 2, 20, 0, 0, 0);
             var dateTo = new DateTime(2020, 2, 21, 0, 0, 0);
             var responseString = "20200220,000000,232.5500000,33547100";
-            var parsedTick = new Tick();
+            var parsedTick = new Tick(0, 0, DateTime.Now);
             var cancellationToken = new CancellationToken();
             
             ticksParserMock.Setup(x => x.ParseTick(responseString))
@@ -65,7 +65,7 @@ namespace AutoTrading.QuotesHistory.Tests
             var dateFrom = new DateTime(2020, 2, 20, 0, 0, 0);
             var dateTo = new DateTime(2020, 2, 21, 0, 0, 0);
             var responseString = "20200220,000000,232.5500000,235.7500000,232.0000000,234.6000000,33547100";
-            var parsedCandle = new Candle();
+            var parsedCandle = new Candle(0, 0, 0, 0, 0, DateTime.Now);
             var cancellationToken = new CancellationToken();
             
             candlesParserMock.Setup(x => x.ParseCandle(responseString))
