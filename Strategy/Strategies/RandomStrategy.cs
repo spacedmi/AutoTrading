@@ -22,7 +22,7 @@ namespace AutoTrading.Strategy.Strategies
             random = new Random();
         }
 
-        public IReadOnlyCollection<Lot> Lots => lots;
+        public IEnumerable<Lot> Lots => lots;
         
         public void LoadHistory(IEnumerable<Candle> historyCandles)
         {
@@ -37,7 +37,7 @@ namespace AutoTrading.Strategy.Strategies
                 openedLot.Close = tick.Value;
             }
             
-            if (random.Next(100) % 100 == 0)
+            if (random.Next(100) % 2 == 0)
             {
                 lots.Add(new LongLot(open: tick.Value, volume: 100)); // TODO use account money
             }

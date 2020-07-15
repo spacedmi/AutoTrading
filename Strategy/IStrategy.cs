@@ -6,7 +6,7 @@ namespace AutoTrading.Strategy
 {
     public interface IStrategy
     {
-        IReadOnlyCollection<Lot> Lots { get; }
+        IEnumerable<Lot> Lots { get; }
         void LoadHistory(IEnumerable<Candle> historyCandles);
         void OnTick(Tick tick);
     }
