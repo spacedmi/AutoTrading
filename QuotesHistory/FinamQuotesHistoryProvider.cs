@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using QuotesHistory.Interfaces;
-using QuotesHistory.Models;
+using AutoTrading.QuotesHistory.Interfaces;
+using AutoTrading.QuotesHistory.Models;
 
-namespace QuotesHistory
+namespace AutoTrading.QuotesHistory
 {
     public class FinamQuotesHistoryProvider : IQuotesHistoryProvider
     {

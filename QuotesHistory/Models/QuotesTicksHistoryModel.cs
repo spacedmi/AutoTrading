@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QuotesHistory.Models
+namespace AutoTrading.QuotesHistory.Models
 {
     public class QuotesTicksHistoryModel
     {

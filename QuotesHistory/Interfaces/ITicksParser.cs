@@ -1,6 +1,6 @@
-﻿using QuotesHistory.Models;
+﻿using AutoTrading.QuotesHistory.Models;
 
-namespace QuotesHistory.Interfaces
+namespace AutoTrading.QuotesHistory.Interfaces
 {
     public interface ITicksParser
     {

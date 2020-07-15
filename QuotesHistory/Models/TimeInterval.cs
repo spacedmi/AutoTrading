@@ -1,4 +1,4 @@
-﻿namespace QuotesHistory.Models
+﻿namespace AutoTrading.QuotesHistory.Models
 {
     /// <summary>
     /// Time interval of quotes history

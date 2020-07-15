@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QuotesHistory.Models.Exceptions
+namespace AutoTrading.QuotesHistory.Models.Exceptions
 {
     public class VolumeParseException : Exception
     {

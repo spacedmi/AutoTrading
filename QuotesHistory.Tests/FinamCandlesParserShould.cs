@@ -1,9 +1,9 @@
 ﻿using System;
+using AutoTrading.QuotesHistory.Models.Exceptions;
 using FluentAssertions;
-using QuotesHistory.Models.Exceptions;
 using Xunit;
 
-namespace QuotesHistory.Tests
+namespace AutoTrading.QuotesHistory.Tests
 {
     public class FinamCandlesParserShould
     {

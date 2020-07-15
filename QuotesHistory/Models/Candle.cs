@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QuotesHistory.Models
+namespace AutoTrading.QuotesHistory.Models
 {
     public class Candle
     {

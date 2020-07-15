@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoTrading.QuotesHistory.Interfaces;
+using AutoTrading.QuotesHistory.Models;
 using FluentAssertions;
 using Moq;
-using QuotesHistory.Interfaces;
-using QuotesHistory.Models;
 using Xunit;
 
-namespace QuotesHistory.Tests
+namespace AutoTrading.QuotesHistory.Tests
 {
     public class FinamQuotesHistoryProviderShould
     {

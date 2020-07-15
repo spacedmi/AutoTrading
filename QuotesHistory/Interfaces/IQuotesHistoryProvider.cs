@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using QuotesHistory.Models;
+using AutoTrading.QuotesHistory.Models;
 
-namespace QuotesHistory.Interfaces
+namespace AutoTrading.QuotesHistory.Interfaces
 {
     public interface IQuotesHistoryProvider
     {

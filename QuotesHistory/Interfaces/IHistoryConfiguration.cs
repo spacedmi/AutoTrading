@@ -1,4 +1,4 @@
-﻿namespace QuotesHistory.Interfaces
+﻿namespace AutoTrading.QuotesHistory.Interfaces
 {
     public interface IHistoryConfiguration
     {

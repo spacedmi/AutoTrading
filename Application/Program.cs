@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using QuotesHistory;
-using QuotesHistory.Models;
-using TestApp;
+using AutoTrading.QuotesHistory;
+using AutoTrading.QuotesHistory.Models;
 
-namespace Application
+namespace AutoTrading.Application
 {
     class Program
     {
@@ -30,6 +29,8 @@ namespace Application
                 new DateTime(2020, 2, 20, 0, 0, 0),
                 new DateTime(2020, 2, 21, 0, 0, 0),
                 CancellationToken.None);
+
+            var sandBox = new SandBox.SandBox();
         }
     }
 }

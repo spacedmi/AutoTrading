@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using QuotesHistory.Interfaces;
-using QuotesHistory.Models;
-using QuotesHistory.Models.Exceptions;
+using AutoTrading.QuotesHistory.Interfaces;
+using AutoTrading.QuotesHistory.Models;
+using AutoTrading.QuotesHistory.Models.Exceptions;
 
-namespace QuotesHistory
+namespace AutoTrading.QuotesHistory
 {
     public class FinamTicksParser : ITicksParser
     {

@@ -6,6 +6,8 @@
         <IsPackable>false</IsPackable>
 
         <AssemblyName>AutoTrading.QuotesHistory.Tests</AssemblyName>
+
+        <RootNamespace>AutoTrading.QuotesHistory.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

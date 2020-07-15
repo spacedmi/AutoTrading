@@ -4,11 +4,12 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>AutoTrading.Application</AssemblyName>
-        <RootNamespace>Application</RootNamespace>
+        <RootNamespace>AutoTrading.Application</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\QuotesHistory\QuotesHistory.csproj" />
+      <ProjectReference Include="..\SandBox\SandBox.csproj" />
     </ItemGroup>
 
     <ItemGroup>

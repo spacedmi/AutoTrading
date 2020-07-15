@@ -1,12 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using QuotesHistory.Interfaces;
-using QuotesHistory.Models;
+using AutoTrading.QuotesHistory.Interfaces;
+using AutoTrading.QuotesHistory.Models;
 
-namespace QuotesHistory
+namespace AutoTrading.QuotesHistory
 {
     public class FinamQuotesHistoryClient : IQuotesHistoryClient
     {

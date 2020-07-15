@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
-using QuotesHistory.Interfaces;
+using AutoTrading.QuotesHistory.Interfaces;
 
-namespace TestApp
+namespace AutoTrading.Application
 {
     public class HistoryConfiguration : IHistoryConfiguration
     {
