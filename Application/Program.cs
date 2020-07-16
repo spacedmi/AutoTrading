@@ -14,7 +14,6 @@ namespace AutoTrading.Application
     {
         static async Task Main(string[] args)
         {
-            // TODO use autofac
             var historyProvider = new FinamQuotesHistoryProvider(
                 new FinamTicksParser(), 
                 new FinamCandlesParser(),

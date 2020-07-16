@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandBox", "SandBox\SandBox.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6C7B8EC1-E75E-4BF0-8206-C977320FBD25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laboratory", "Laboratory\Laboratory.csproj", "{0C6E1AED-B0A7-4668-BB64-E5459FDA1F52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{6C7B8EC1-E75E-4BF0-8206-C977320FBD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7B8EC1-E75E-4BF0-8206-C977320FBD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7B8EC1-E75E-4BF0-8206-C977320FBD25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C6E1AED-B0A7-4668-BB64-E5459FDA1F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C6E1AED-B0A7-4668-BB64-E5459FDA1F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C6E1AED-B0A7-4668-BB64-E5459FDA1F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6E1AED-B0A7-4668-BB64-E5459FDA1F52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
