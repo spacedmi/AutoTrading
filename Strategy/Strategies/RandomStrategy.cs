@@ -34,16 +34,16 @@ namespace AutoTrading.Strategy.Strategies
             var openedLot = lots.FirstOrDefault(x => !x.Close.HasValue);
             if (openedLot != null)
             {
-                openedLot.Close = tick.Value;
+                openedLot.CloseLot(tick.Value, tick.DateTime);
             }
             
             if (random.Next(100) % 2 == 0)
             {
-                lots.Add(new LongLot(open: tick.Value, volume: 100)); // TODO use account money
+                lots.Add(new LongLot(open: tick.Value, tick.DateTime, volume: 100)); // TODO use account money
             }
             else
             {
-                lots.Add(new ShortLot(open: tick.Value, volume: 100)); // TODO use account money
+                lots.Add(new ShortLot(open: tick.Value, tick.DateTime, volume: 100)); // TODO use account money
             }
         }
     }

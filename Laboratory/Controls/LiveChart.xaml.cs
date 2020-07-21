@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Effects;
 using LiveCharts;
 using LiveCharts.Defaults;
+using LiveCharts.Helpers;
 using LiveCharts.Wpf;
 
 namespace AutoTrading.Laboratory.Controls
@@ -17,8 +19,11 @@ namespace AutoTrading.Laboratory.Controls
         public LiveChart()
         {
             InitializeComponent();
+            YFormatter = val => val.ToString("C");
             DataContext = this;
         }
+
+        public Func<double, string> YFormatter { get; set; }
 
         public SeriesCollection SeriesCollection
         {
@@ -44,13 +49,26 @@ namespace AutoTrading.Laboratory.Controls
         {
             SeriesCollection = new SeriesCollection
             {
-                new OhlcSeries
+                new CandleSeries
                 {
                     Values = candles,
                 },
             };
             SeriesCollection.AddRange(lots);
             Labels = candlesDates.ToArray();
+            Y.MinValue = candles.Min(x => x.Close);
+            Y.MaxValue = candles.Max(x => x.Close);
+        }
+
+        public void ShowError(string errorText)
+        {
+            ErrorBlock.Text = errorText;
+            ErrorBlock.Visibility = Visibility.Visible;
+        }
+        
+        public void HideError()
+        {
+            ErrorBlock.Visibility = Visibility.Hidden;
         }
  
         public event PropertyChangedEventHandler PropertyChanged;

@@ -9,6 +9,7 @@ using AutoTrading.Laboratory.Configuration;
 using AutoTrading.QuotesHistory;
 using AutoTrading.QuotesHistory.Models;
 using AutoTrading.SandBox;
+using AutoTrading.Strategy.Models;
 using AutoTrading.Strategy.Strategies;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -30,44 +31,60 @@ namespace Laboratory
 
         private async void RefreshChart(object sender, RoutedEventArgs e)
         {
-            var selectedDate = DateTimePicker.SelectedDate;
-            if (!selectedDate.HasValue)
-                return;
-            
-            var historyProvider = new FinamQuotesHistoryProvider(
-                new FinamTicksParser(), 
-                new FinamCandlesParser(),
-                new FinamQuotesHistoryClient(
-                    new HistoryConfiguration()));
-            
-            var candlesHistory = await historyProvider.GetCandlesHistory(
-                "GAZP",
-                TimeInterval.Hours,
-                selectedDate.Value,
-                selectedDate.Value.AddDays(1),
-                CancellationToken.None);
-
-            var sandBoxRunner = new SandBoxRunner();
-            var report = sandBoxRunner.RunStrategy(
-                new List<Candle>(),
-                new RandomStrategy(),
-                candlesHistory.Candles.Select(x => new Tick(value: x.CloseValue, x.Volume, x.CloseDateTime)));
-
-            var candles = new ChartValues<OhlcPoint>();
-            candles.AddRange(candlesHistory.Candles.Select(x => 
-                new OhlcPoint((double) x.OpenValue, (double) x.HighValue, (double) x.LowValue, (double) x.CloseValue)));
-
-            var lots = new[]
+            try
             {
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {},
-                    Fill = Brushes.Transparent,
-                }
-            };
+                var selectedDate = DateTimePicker.SelectedDate;
+                if (!selectedDate.HasValue)
+                    return;
+            
+                var historyProvider = new FinamQuotesHistoryProvider(
+                    new FinamTicksParser(), 
+                    new FinamCandlesParser(),
+                    new FinamQuotesHistoryClient(
+                        new HistoryConfiguration()));
+            
+                var candlesHistory = await historyProvider.GetCandlesHistory(
+                    "GAZP",
+                    TimeInterval.Minutes10,
+                    selectedDate.Value.Date,
+                    selectedDate.Value.Date.AddDays(1).AddSeconds(-1),
+                    CancellationToken.None);
 
-            var candlesDates = candlesHistory.Candles.Select(x => x.CloseDateTime.ToString("hh:mm:ss"));
-            LiveChart?.Refresh(candles, candlesDates, lots);
+                var candles = candlesHistory.Candles.ToList();
+                var sandBoxRunner = new SandBoxRunner();
+                var report = sandBoxRunner.RunStrategy(
+                    new List<Candle>(),
+                    new RandomStrategy(),
+                    candles.Select(x => new Tick(value: x.CloseValue, x.Volume, x.CloseDateTime)));
+
+                var candlesToShow = new ChartValues<OhlcPoint>();
+                candlesToShow.AddRange(candles.Select(x => 
+                    new OhlcPoint((double) x.OpenValue, (double) x.HighValue, (double) x.LowValue, (double) x.CloseValue)));
+
+                var lots = report.CloseLots.Select(lot =>
+                {
+                    var openPosition = candles.FindIndex(c => c.CloseDateTime == lot.OpenTime);
+                    var closePosition = candles.FindIndex(c => c.CloseDateTime == lot.CloseTime);
+                    return new LineSeries
+                    {
+                        Values = new ChartValues<ObservablePoint>
+                        {
+                            new ObservablePoint(openPosition, (double) lot.Open), 
+                            new ObservablePoint(closePosition, (double) lot.Close),
+                        },
+                        Fill = Brushes.Transparent,
+                        PointForeground  = lot is LongLot ? Brushes.Blue : Brushes.Black,
+                    };
+                });
+
+                var candlesDates = candlesHistory.Candles.Select(x => x.CloseDateTime.ToString("HH:mm:ss"));
+                LiveChart?.Refresh(candlesToShow, candlesDates, lots);
+                LiveChart?.HideError();
+            }
+            catch (Exception exception)
+            {
+                LiveChart?.ShowError(exception.Message);
+            }
         }
     }
 }

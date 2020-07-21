@@ -8,10 +8,21 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <wpf:CartesianChart Series="{Binding SeriesCollection}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <wpf:CartesianChart Zoom="X" 
+                            Series="{Binding SeriesCollection}">
             <wpf:CartesianChart.AxisX>
-                <wpf:Axis Labels="{Binding Labels}"/>
+                <wpf:Axis Name="X"
+                          Labels="{Binding Labels}" 
+                          Separator="{x:Static wpf:DefaultAxes.CleanSeparator}" />
             </wpf:CartesianChart.AxisX>
+            <wpf:CartesianChart.AxisY>
+                <wpf:Axis Name="Y" LabelFormatter="{Binding YFormatter}"/>
+            </wpf:CartesianChart.AxisY>
         </wpf:CartesianChart>
+        <TextBlock Grid.Row="1" x:Name="ErrorBlock" Foreground="Red" Visibility="Hidden"/>
     </Grid>
 </UserControl>

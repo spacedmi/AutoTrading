@@ -20,6 +20,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <DatePicker x:Name="DateTimePicker" Grid.Row="0" SelectedDateChanged="RefreshChart" />
+            <Button x:Name="RefreshButton" Grid.Row="1" Content="Refresh" Click="RefreshChart" />
         </Grid>
         <controls:LiveChart x:Name="LiveChart" Grid.Column="1" />
     </Grid>

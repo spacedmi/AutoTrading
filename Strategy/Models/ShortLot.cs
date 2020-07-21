@@ -1,8 +1,10 @@
-﻿namespace AutoTrading.Strategy.Models
+﻿using System;
+
+namespace AutoTrading.Strategy.Models
 {
     public class ShortLot : Lot
     {
-        public ShortLot(decimal open, int volume) : base(open, volume)
+        public ShortLot(decimal open, DateTimeOffset openTime, int volume) : base(open, openTime, volume)
         {
         }
 

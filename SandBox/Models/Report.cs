@@ -12,6 +12,7 @@ namespace AutoTrading.SandBox.Models
         }
 
         public IReadOnlyCollection<Lot> Lots { get; }
+        public IReadOnlyCollection<Lot> CloseLots =>  Lots.Where(x => x.Close.HasValue).ToList();
         public decimal Profit => Lots.Where(x => x.Profit.HasValue).Sum(x => x.Profit.Value);
         public IReadOnlyCollection<Lot> ProfitableLots => Lots.Where(x => x.Profit.HasValue && x.Profit > 0).ToList();
         public IReadOnlyCollection<Lot> UnprofitableLots => Lots.Where(x => x.Profit.HasValue && x.Profit <= 0).ToList();
