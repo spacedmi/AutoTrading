@@ -7,7 +7,7 @@ using AutoTrading.Strategy.Models;
 namespace AutoTrading.Strategy.Strategies
 {
     /// <summary>
-    /// Random open short or long lot and close previous lot per tick. Only one lot can be opened at the moment
+    /// Random open short or long lot and close previous lot. Only one lot can be opened at the moment
     /// </summary>
     public class RandomStrategy : IStrategy
     {
@@ -31,10 +31,22 @@ namespace AutoTrading.Strategy.Strategies
 
         public void OnTick(Tick tick)
         {
+            // Random ignore tick
+            if (random.Next(100) % 2 == 0)
+            {
+                return;
+            }
+
             var openedLot = lots.FirstOrDefault(x => !x.Close.HasValue);
             if (openedLot != null)
             {
                 openedLot.CloseLot(tick.Value, tick.DateTime);
+            }
+            
+            // Random continue
+            if (random.Next(100) % 2 == 0)
+            {
+                return;
             }
             
             if (random.Next(100) % 2 == 0)

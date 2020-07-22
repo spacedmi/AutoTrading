@@ -23,8 +23,8 @@ namespace AutoTrading.SandBox.Models
         {
             return 
 @$"Lots count: {Lots.Count}
-{ProfitableLots.Count} profitable lots in amount {ProfitableLotsSum}
-{UnprofitableLots.Count} unprofitable lots in amount  {UnprofitableLotsSum}
+{ProfitableLots.Count} profitable lots: {ProfitableLotsSum}
+{UnprofitableLots.Count} unprofitable lots:  {UnprofitableLotsSum}
 Profit: {Profit}";
         }
     }

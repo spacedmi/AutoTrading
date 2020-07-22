@@ -65,6 +65,10 @@ namespace Laboratory
                 {
                     var openPosition = candles.FindIndex(c => c.CloseDateTime == lot.OpenTime);
                     var closePosition = candles.FindIndex(c => c.CloseDateTime == lot.CloseTime);
+                    var brush = lot is LongLot ? Brushes.Blue : Brushes.Yellow;
+                    var pointGeometry = lot is LongLot 
+                        ? Geometry.Parse("M 0 0 L 4 -4 L 8 0 Z")
+                        : Geometry.Parse("M 0 0 L 4 4 L 8 0 Z");
                     return new LineSeries
                     {
                         Values = new ChartValues<ObservablePoint>
@@ -73,13 +77,17 @@ namespace Laboratory
                             new ObservablePoint(closePosition, (double) lot.Close),
                         },
                         Fill = Brushes.Transparent,
-                        PointForeground  = lot is LongLot ? Brushes.Blue : Brushes.Black,
+                        Stroke = brush,
+                        PointForeground  = brush,
+                        PointGeometry = pointGeometry,
+                        PointGeometrySize = 10,
                     };
                 });
 
                 var candlesDates = candlesHistory.Candles.Select(x => x.CloseDateTime.ToString("HH:mm:ss"));
                 LiveChart?.Refresh(candlesToShow, candlesDates, lots);
                 LiveChart?.HideError();
+                ReportBlock.Text = report.ToString();
             }
             catch (Exception exception)
             {
