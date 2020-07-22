@@ -1,5 +1,5 @@
 # Algorithmic trading solution
-
+![alt tag](https://sun9-10.userapi.com/C7-NY0QfVMXojawnRmrfhQyZUDv8DlNiC9EXAQ/c7XdKzqNnKw.jpg)
 Includes:
  - Provider of historical data (implemented for the ["Finam" broker](https://www.finam.ru/profile/moex-akcii/gazprom/export/))
  - Sandbox for backtesting of algorithmic trading Strategies
