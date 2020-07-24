@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using AutoTrading.Laboratory.BackTesting;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Helpers;
@@ -45,19 +46,12 @@ namespace AutoTrading.Laboratory.Controls
             }
         }
  
-        public void Refresh(ChartValues<OhlcPoint> candles, IEnumerable<string> candlesDates, IEnumerable<LineSeries> lots)
+        public void Refresh(LiveChartModel liveChartModel)
         {
-            SeriesCollection = new SeriesCollection
-            {
-                new CandleSeries
-                {
-                    Values = candles,
-                },
-            };
-            SeriesCollection.AddRange(lots);
-            Labels = candlesDates.ToArray();
-            Y.MinValue = candles.Min(x => x.Close);
-            Y.MaxValue = candles.Max(x => x.Close);
+            SeriesCollection = liveChartModel.SeriesCollection;
+            Labels = liveChartModel.Labels.ToArray();
+            Y.MinValue = (double) liveChartModel.MinY;
+            Y.MaxValue = (double) liveChartModel.MaxY;
         }
 
         public void ShowError(string errorText)
