@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using AutoTrading.Laboratory.BackTesting;
+using AutoTrading.Laboratory.BackTesting.Random;
 
 namespace Laboratory
 {
@@ -24,12 +26,11 @@ namespace Laboratory
                 if (!selectedDate.HasValue)
                     return;
 
-                var visualizer = new RandomDailyCandlesVisualizer();
+                var visualizer = new RandomDailyTicksVisualizer(ReportBlock);
                 var result = await visualizer.Visualize(selectedDate.Value);
                 
                 LiveChart.Refresh(result);
                 LiveChart?.HideError();
-                ReportBlock.Text = result.Report;
             }
             catch (Exception exception)
             {

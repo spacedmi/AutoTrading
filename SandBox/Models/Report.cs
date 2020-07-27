@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoTrading.Strategy;
 using AutoTrading.Strategy.Models;
 
 namespace AutoTrading.SandBox.Models
 {
     public class Report
     {
-        public Report(IEnumerable<Lot> lots)
+        public Report(IStrategy strategy)
         {
-            Lots = lots.ToList();
+            Lots = strategy.Lots.ToList();
         }
 
         public IReadOnlyCollection<Lot> Lots { get; }

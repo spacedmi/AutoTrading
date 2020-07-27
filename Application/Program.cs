@@ -36,7 +36,7 @@ namespace AutoTrading.Application
             var sandBoxRunner = new SandBoxRunner();
             var report = sandBoxRunner.RunStrategy(
                 new List<Candle>(),
-                new RandomStrategy(),
+                new RandomStrategy(2),
                 candlesHistory.Candles.Select(x => new Tick(value: x.CloseValue, x.Volume, x.CloseDateTime)));
         }
     }

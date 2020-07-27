@@ -9,16 +9,20 @@ namespace AutoTrading.Strategy.Strategies
     /// <summary>
     /// Random open short or long lot and close previous lot. Only one lot can be opened at the moment
     /// </summary>
-    public class RandomStrategy : IStrategy
+    public class RandomStrategy : IStrategy, IDisposable
     {
+        private readonly int randomParameter;
         private readonly List<Lot> lots;
         private readonly List<Candle> history;
+        private readonly List<IObserver<Lot>> observers;
         private readonly Random random;
 
-        public RandomStrategy()
+        public RandomStrategy(int randomParameter)
         {
+            this.randomParameter = randomParameter;
             lots = new List<Lot>();
             history = new List<Candle>();
+            observers = new List<IObserver<Lot>>();
             random = new Random();
         }
 
@@ -31,32 +35,52 @@ namespace AutoTrading.Strategy.Strategies
 
         public void OnTick(Tick tick)
         {
-            // Random ignore tick
-            if (random.Next(100) % 2 == 0)
+            try
             {
-                return;
-            }
+                // Random ignore tick
+                if (random.Next(randomParameter) % randomParameter != 0)
+                {
+                    return;
+                }
 
-            var openedLot = lots.FirstOrDefault(x => !x.Close.HasValue);
-            if (openedLot != null)
-            {
-                openedLot.CloseLot(tick.Value, tick.DateTime);
-            }
+                var lotToClose = lots.FirstOrDefault(x => !x.Close.HasValue);
+                if (lotToClose != null)
+                {
+                    lotToClose.CloseLot(tick);
+                    observers.ForEach(x => x.OnNext(lotToClose));
+                }
             
-            // Random continue
-            if (random.Next(100) % 2 == 0)
-            {
-                return;
-            }
+                // Random continue
+                if (random.Next(randomParameter) % randomParameter != 0)
+                {
+                    return;
+                }
             
-            if (random.Next(100) % 2 == 0)
-            {
-                lots.Add(new LongLot(open: tick.Value, tick.DateTime, volume: 100)); // TODO use account money
+                if (random.Next(100) % 2 == 0)
+                {
+                    lots.Add(new LongLot(tick, volume: 100)); // TODO use account money
+                }
+                else
+                {
+                    lots.Add(new ShortLot(tick, volume: 100)); // TODO use account money
+                }
             }
-            else
+            catch (Exception e)
             {
-                lots.Add(new ShortLot(open: tick.Value, tick.DateTime, volume: 100)); // TODO use account money
+                observers.ForEach(x => x.OnError(e));
             }
+        }
+
+        public IDisposable Subscribe(IObserver<Lot> observer)
+        {
+            if (!observers.Contains(observer))
+                observers.Add(observer);
+            return this;
+        }
+
+        public void Dispose()
+        {
+            observers.Clear();
         }
     }
 }

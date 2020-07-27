@@ -16,7 +16,7 @@ namespace AutoTrading.SandBox
                 strategy.OnTick(tick);
             }
             
-            return new Report(strategy.Lots);
+            return new Report(strategy);
         }
     }
 }

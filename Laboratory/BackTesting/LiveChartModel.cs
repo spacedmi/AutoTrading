@@ -9,6 +9,5 @@ namespace AutoTrading.Laboratory.BackTesting
         public IEnumerable<string> Labels { get; set; }
         public decimal MinY { get; set; }
         public decimal MaxY { get; set; }
-        public string Report { get; set; }
     }
 }

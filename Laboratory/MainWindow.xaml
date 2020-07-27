@@ -20,7 +20,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <DatePicker x:Name="DateTimePicker" Grid.Row="0" SelectedDateChanged="RefreshChart" />
+            <DatePicker x:Name="DateTimePicker" Grid.Row="0" />
             <Button x:Name="RefreshButton" Grid.Row="1" Content="Refresh" Click="RefreshChart" />
             <TextBlock Grid.Row="2" x:Name="ReportBlock" Foreground="Black" />
         </Grid>

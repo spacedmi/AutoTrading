@@ -6,9 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using AutoTrading.Laboratory.BackTesting;
 using LiveCharts;
-using LiveCharts.Defaults;
-using LiveCharts.Helpers;
-using LiveCharts.Wpf;
 
 namespace AutoTrading.Laboratory.Controls
 {

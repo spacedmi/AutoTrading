@@ -1,10 +1,11 @@
 ﻿using System;
+using AutoTrading.QuotesHistory.Models;
 
 namespace AutoTrading.Strategy.Models
 {
     public class LongLot : Lot
     {
-        public LongLot(decimal open, DateTimeOffset openTime, int volume) : base(open, openTime, volume)
+        public LongLot(Tick tick, int volume) : base(tick, volume)
         {
         }
 

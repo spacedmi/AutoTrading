@@ -1,13 +1,15 @@
 ﻿using System;
+using AutoTrading.QuotesHistory.Models;
 
 namespace AutoTrading.Strategy.Models
 {
     public abstract class Lot
     {
-        protected Lot(decimal open, DateTimeOffset openTime, int volume)
+        protected Lot(Tick tick, int volume)
         {
-            OpenTime = openTime;
-            Open = open;
+            OpenTime = tick.DateTime;
+            Open = tick.Value;
+            OpenTick = tick;
             Volume = volume;
         }
 
@@ -15,13 +17,16 @@ namespace AutoTrading.Strategy.Models
         public decimal? Close { get; private set; }
         public DateTimeOffset OpenTime { get; }
         public DateTimeOffset? CloseTime { get; private set; }
+        public Tick OpenTick { get; set; }
+        public Tick CloseTick { get; set; }
         public int Volume { get; }
         public abstract decimal? Profit { get; }
 
-        public void CloseLot(decimal closeValue, DateTimeOffset closeTime)
+        public void CloseLot(Tick tick)
         {
-            Close = closeValue;
-            CloseTime = closeTime;
+            Close = tick.Value;
+            CloseTime = tick.DateTime;
+            CloseTick = tick;
         }
     }
 }
